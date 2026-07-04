@@ -8,120 +8,131 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
-        font-size: 14px; color: #1a1a2e; background: #fff;
+        font-size: 14px; line-height: 1.7; color: #18181b; background: #fafafa;
         overflow: hidden; height: 100vh; display: flex; flex-direction: column;
     }
     .header {
         display: flex; align-items: center; justify-content: space-between;
         padding: 14px 18px;
-        background: linear-gradient(135deg, #e8f0fe, #d6e4ff);
-        border-bottom: 1px solid #c8d6e5;
+        background: #ffffff;
+        border-bottom: 1px solid #e4e4e7;
         flex-shrink: 0;
     }
-    .header-title { font-size: 16px; font-weight: 700; color: #2c3e80; }
+    .header-title { font-size: 15px; font-weight: 600; color: #18181b; }
     .header-close {
-        background: none; border: none; color: #7b8eb0; font-size: 22px;
+        background: none; border: none; color: #a1a1aa; font-size: 20px;
         cursor: pointer; padding: 0 4px; line-height: 1; font-weight: 300;
+        transition: color 0.15s ease;
     }
-    .header-close:hover { color: #2c3e80; }
+    .header-close:hover { color: #18181b; }
     .body-scroll { flex: 1; overflow-y: auto; padding: 16px; }
-    .mode-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+    .mode-tabs {
+        display: flex; gap: 0; margin-bottom: 14px;
+        background: #f4f4f5; border-radius: 8px; padding: 3px;
+    }
     .mode-tab {
-        flex: 1; padding: 10px; border-radius: 10px; border: 2px solid #d6e4ff;
-        background: #f4f8ff; color: #5a6e8e; cursor: pointer; text-align: center;
-        font-size: 13px; font-weight: 600; transition: all 0.2s;
+        flex: 1; padding: 8px; border-radius: 6px; border: none;
+        background: transparent; color: #71717a; cursor: pointer; text-align: center;
+        font-size: 13px; font-weight: 500; transition: all 0.15s ease;
     }
     .mode-tab.active {
-        background: #4a6cf7; border-color: #4a6cf7; color: #fff;
-        box-shadow: 0 2px 8px rgba(74,108,247,0.3);
+        background: #ffffff; color: #18181b;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
     }
     .shot-area {
-        min-height: 110px; border: 2px dashed #c8d6e5; border-radius: 14px;
-        display: flex; align-items: center; justify-content: center; color: #8899b0;
-        font-size: 14px; background: #fafcff; margin-bottom: 14px;
+        min-height: 110px; border: 1px dashed #d4d4d8; border-radius: 12px;
+        display: flex; align-items: center; justify-content: center; color: #a1a1aa;
+        font-size: 13px; background: #fafafa; margin-bottom: 14px;
         overflow: hidden; position: relative;
     }
     .shot-area img { max-width: 100%; max-height: 260px; display: block; }
-    .hint-text { padding: 18px; color: #8899b0; font-size: 13px; text-align: center; line-height: 2; }
-    .think-options { display: flex; gap: 8px; margin-bottom: 14px; }
+    .hint-text { padding: 18px; color: #a1a1aa; font-size: 13px; text-align: center; line-height: 2; }
+    .think-options {
+        display: flex; gap: 0; margin-bottom: 14px;
+        background: #f4f4f5; border-radius: 8px; padding: 3px;
+    }
     .think-opt {
-        flex: 1; padding: 8px 6px; border-radius: 8px; border: 2px solid #d6e4ff;
-        background: #f4f8ff; color: #5a6e8e; cursor: pointer; text-align: center;
-        font-size: 11px; font-weight: 600; transition: all 0.2s;
+        flex: 1; padding: 8px 6px; border-radius: 6px; border: none;
+        background: transparent; color: #71717a; cursor: pointer; text-align: center;
+        font-size: 12px; font-weight: 500; transition: all 0.15s ease;
     }
     .think-opt.active {
-        background: #4a6cf7; border-color: #4a6cf7; color: #fff;
-        box-shadow: 0 2px 8px rgba(74,108,247,0.3);
+        background: #ffffff; color: #18181b;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
     }
     .btn-go {
-        width: 100%; padding: 12px; border-radius: 12px; border: none;
-        background: linear-gradient(135deg, #4a6cf7, #6c5ce7); color: #fff;
-        font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 14px;
-        box-shadow: 0 4px 15px rgba(74,108,247,0.35);
+        width: 100%; padding: 12px; border-radius: 10px; border: none;
+        background: #5252b3; color: #fff;
+        font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 14px;
+        box-shadow: 0 1px 3px rgba(82,82,179,0.3);
         transition: all 0.2s;
     }
-    .btn-go:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(74,108,247,0.45); }
-    .btn-go:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-go:hover { background: #4444a8; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(82,82,179,0.25); }
+    .btn-go:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
     .answer-box {
-        background: #f4f8ff; border-radius: 12px; padding: 16px; color: #1a1a2e;
+        background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; padding: 16px; color: #3f3f46;
         max-height: 200px; overflow-y: auto; font-size: 14px; line-height: 1.8;
-        white-space: pre-wrap; word-break: break-word; border: 1px solid #d6e4ff;
+        white-space: pre-wrap; word-break: break-word;
         margin-bottom: 12px;
     }
-    .answer-box:empty::after { content: '点击上方按钮开始答题...'; color: #b0bec5; }
+    .answer-box:empty::after { content: '点击上方按钮开始答题...'; color: #a1a1aa; }
     .btn-row { display: flex; gap: 8px; margin-bottom: 12px; }
     .btn-row button {
-        flex: 1; padding: 10px; border-radius: 10px; border: 2px solid #d6e4ff;
-        background: #fff; color: #4a6cf7; font-size: 13px; font-weight: 600; cursor: pointer;
-        transition: all 0.2s;
+        flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #e4e4e7;
+        background: #fff; color: #5252b3; font-size: 13px; font-weight: 500; cursor: pointer;
+        transition: all 0.15s ease;
     }
-    .btn-row button:hover { background: #f0f4ff; border-color: #4a6cf7; }
+    .btn-row button:hover { background: #f4f4f5; }
     .chat-row { display: flex; gap: 8px; }
     .chat-input {
-        flex: 1; padding: 10px 14px; border-radius: 10px; border: 2px solid #d6e4ff;
-        background: #fff; color: #1a1a2e; font-size: 13px; outline: none;
-        transition: border-color 0.2s;
+        flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid #e4e4e7;
+        background: #fff; color: #18181b; font-size: 13px; outline: none;
+        transition: border-color 0.15s ease;
     }
-    .chat-input:focus { border-color: #4a6cf7; }
+    .chat-input:focus { border-color: #5252b3; }
     .chat-send {
-        padding: 10px 18px; border-radius: 10px; border: none; background: #4a6cf7;
-        color: #fff; font-size: 13px; font-weight: 700; cursor: pointer;
-        white-space: nowrap; transition: background 0.2s;
+        padding: 10px 18px; border-radius: 8px; border: none; background: #5252b3;
+        color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+        white-space: nowrap; transition: background 0.15s ease;
     }
-    .chat-send:hover { background: #3b5de7; }
-    .chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
-    .loading { text-align: center; padding: 24px; color: #4a6cf7; font-size: 18px; }
-    .error-msg { color: #e74c3c; padding: 10px; font-size: 13px; }
+    .chat-send:hover { background: #4444a8; }
+    .chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+    .loading { text-align: center; padding: 24px; color: #71717a; font-size: 18px; }
+    .error-msg { color: #dc2626; padding: 10px; font-size: 13px; }
     .history-link { margin-top: 10px; text-align: center; }
-    .history-link a { color: #4a6cf7; font-size: 13px; text-decoration: none; font-weight: 600; }
+    .history-link a { color: #5252b3; font-size: 13px; text-decoration: none; font-weight: 500; }
     .history-link a:hover { text-decoration: underline; }
     .history-list { max-height: 300px; overflow-y: auto; }
     .history-item {
-        padding: 12px 14px; border-bottom: 1px solid #e8eef5;
-        cursor: pointer; font-size: 13px; color: #1a1a2e;
+        padding: 12px 14px; border-bottom: 1px solid #f4f4f5;
+        cursor: pointer; font-size: 13px; color: #3f3f46;
+        transition: background 0.15s ease;
     }
-    .history-item:hover { background: #f0f4ff; }
-    .history-item .time { font-size: 11px; color: #8899b0; margin-bottom: 4px; }
+    .history-item:hover { background: #fafafa; }
+    .history-item .time { font-size: 11px; color: #a1a1aa; margin-bottom: 4px; }
     .history-item .preview { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .history-empty { text-align: center; color: #b0bec5; padding: 40px; font-size: 14px; }
+    .history-empty { text-align: center; color: #a1a1aa; padding: 40px; font-size: 14px; }
     .history-detail {
-        background: #f4f8ff; border-radius: 12px; padding: 16px; color: #1a1a2e;
+        background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; padding: 16px; color: #3f3f46;
         max-height: 280px; overflow-y: auto; font-size: 14px; line-height: 1.8;
-        white-space: pre-wrap; border: 1px solid #d6e4ff;
+        white-space: pre-wrap;
     }
     .back-btn {
-        background: #fff; border: 2px solid #d6e4ff; color: #4a6cf7; font-size: 13px;
+        background: #fff; border: 1px solid #e4e4e7; color: #5252b3; font-size: 13px;
         cursor: pointer; padding: 6px 14px; border-radius: 8px; margin-bottom: 10px;
-        font-weight: 600;
+        font-weight: 500; transition: all 0.15s ease;
     }
-    .back-btn:hover { background: #f0f4ff; }
+    .back-btn:hover { background: #f4f4f5; }
     .clear-btn {
-        background: #fff; border: 2px solid #f5c6cb; color: #e74c3c; font-size: 12px;
+        background: #fff; border: 1px solid #fecaca; color: #dc2626; font-size: 12px;
         cursor: pointer; padding: 6px 12px; border-radius: 8px; float: right;
-        font-weight: 600;
+        font-weight: 500; transition: all 0.15s ease;
     }
-    .clear-btn:hover { background: #fef0f0; }
-    .section-title { font-size: 12px; color: #7b8eb0; margin-bottom: 8px; font-weight: 600; }
+    .clear-btn:hover { background: #fef2f2; }
+    .section-title {
+        font-size: 11px; color: #71717a; margin-bottom: 8px; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.05em;
+    }
 </style>
 </head>
 <body>
@@ -143,6 +154,8 @@ var chatHistory = '';
 var view = 'main';
 var historyData = [];
 var historyItem = null;
+var wrongCount = 0;
+var lastWrongEntryId = null;
 var app = document.getElementById('app');
 
 function closePanel() { window.parent.postMessage({ type: 'closePanel' }, '*'); }
@@ -181,13 +194,18 @@ function renderMain() {
     h += '</div>';
 
     if (mode === 'screenshot') {
-        h += '<div class="shot-area">';
+        h += '<div class="shot-area" id="shotArea" data-dropzone="1">';
         if (capturedImage) {
             h += '<img src="' + capturedImage + '">';
         } else {
-            h += '<div class="hint-text">📌 用 <b>Win+Shift+S</b> 截图题目<br>在此按 <b>Ctrl+V</b> 粘贴</div>';
+            h += '<div class="hint-text">'
+                + '<div>📌 用 <b>Win+Shift+S</b> 截图题目</div>'
+                + '<div style="margin-top:6px">在此按 <b>Ctrl+V</b> 粘贴 · 或拖拽图片到此 · 或</div>'
+                + '<div style="margin-top:8px"><button type="button" id="btnPickFile" style="background:#fff;border:1px solid #e4e4e7;color:#5252b3;padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:500;">📂 选择图片文件</button></div>'
+                + '</div>';
         }
         h += '</div>';
+        h += '<input type="file" id="fileInput" accept="image/*" style="display:none">';
     } else {
         h += '<div class="shot-area" style="min-height:60px"><div class="hint-text">点击下方按钮自动抓取页面题目</div></div>';
     }
@@ -202,6 +220,19 @@ function renderMain() {
 
     h += '<button class="btn-go" id="btnGo" data-action="doSubmit">🚀 开始答题</button>';
     h += '<div class="answer-box" id="answerBox"></div>';
+    h += '<div id="wrongArea" style="background:#fafafa;border:1px solid #e4e4e7;border-radius:10px;padding:14px;margin-bottom:12px;">';
+    h += '<div style="font-size:12px;color:#71717a;margin-bottom:8px;font-weight:600;">💡 这道题你做对了吗？</div>';
+    h += '<div style="display:flex;gap:8px;margin-bottom:8px;">';
+    h += '<button id="btnRight" style="flex:1;padding:8px;border-radius:8px;border:1px solid #bbf7d0;background:#fff;color:#16a34a;font-size:12px;font-weight:600;cursor:pointer;">✅ 做对了</button>';
+    h += '<button id="btnWrong" style="flex:1;padding:8px;border-radius:8px;border:1px solid #fecaca;background:#fff;color:#dc2626;font-size:12px;font-weight:600;cursor:pointer;">❌ 做错了</button>';
+    h += '</div>';
+    h += '<div id="wrongDetail" style="display:none;">';
+    h += '<div id="wrongCount" style="font-size:11px;color:#71717a;text-align:center;margin-bottom:8px;">本次已加入 ' + wrongCount + ' 道错题</div>';
+    h += '<input id="wrongInput" style="width:100%;padding:10px 14px;border-radius:8px;border:1px solid #e4e4e7;background:#fff;color:#18181b;font-size:13px;margin-bottom:8px;box-sizing:border-box;" type="text" placeholder="我填的答案是...（可选）">';
+    h += '<button id="btnQuickAdd" style="width:100%;padding:12px;border-radius:10px;border:none;background:#16a34a;color:#fff;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:8px;">➕ 加入错题本</button>';
+    h += '<button id="btnAnalyze" style="width:100%;padding:12px;border-radius:10px;border:none;background:#5252b3;color:#fff;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:0;">🔬 分析最近一道错题</button>';
+    h += '</div>';
+    h += '</div>';
     h += '<div class="btn-row">';
     h += '<button data-action="copyAnswer">📋 复制答案</button>';
     h += '<button data-action="fillAnswer">✏️ 填入页面</button>';
@@ -235,6 +266,204 @@ function renderMain() {
             else if (action === 'showHistory') showHistory();
         });
     });
+
+    // 错题标记按钮绑定（必须在 renderMain 内部，DOM 已存在）
+    var btnRight = document.getElementById('btnRight');
+    var btnWrong = document.getElementById('btnWrong');
+    var wrongDetail = document.getElementById('wrongDetail');
+    if (btnRight) btnRight.addEventListener('click', function() {
+        if (wrongDetail) wrongDetail.style.display = 'none';
+        this.style.background = '#f0fdf4'; this.textContent = '✅ 已标记';
+        if (btnWrong) { btnWrong.style.background = '#fff'; btnWrong.textContent = '❌ 做错了'; }
+    });
+    if (btnWrong) btnWrong.addEventListener('click', function() {
+        if (wrongDetail) wrongDetail.style.display = 'block';
+        this.style.background = '#fef2f2'; this.textContent = '❌ 已标记';
+        if (btnRight) { btnRight.style.background = '#fff'; btnRight.textContent = '✅ 做对了'; }
+    });
+    var btnAnalyze = document.getElementById('btnAnalyze');
+    var btnQuickAdd = document.getElementById('btnQuickAdd');
+    var wrongCountEl = document.getElementById('wrongCount');
+
+    // 加入错题本（quick-add，允许连续标记多道）
+    if (btnQuickAdd) btnQuickAdd.addEventListener('click', async function() {
+        if (!chatHistory) { alert('请先点击「开始答题」获取答案'); return; }
+        var wrongInput = document.getElementById('wrongInput');
+        this.disabled = true; this.textContent = '⏳ 加入中...';
+        try {
+            var resp = await fetch(API + '/api/wrong/quick-add', {
+                method: 'POST', headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    session_id: sessionId || '',
+                    question: mode === 'screenshot' ? (chatHistory.slice(0, 500)) : '',
+                    correct_answer: chatHistory,
+                    wrong_answer: (wrongInput ? wrongInput.value.trim() : ''),
+                    source_url: window.location.href
+                })
+            });
+            var result = await resp.json();
+            if (result.success && result.entry_id) {
+                wrongCount++;
+                lastWrongEntryId = result.entry_id;
+                if (wrongCountEl) {
+                    wrongCountEl.textContent = '✓ 本次已加入 ' + wrongCount + ' 道错题';
+                    wrongCountEl.style.color = '#16a34a';
+                }
+                if (wrongInput) wrongInput.value = '';
+                this.textContent = '✓ 已加入（第' + wrongCount + '道），可继续标记';
+                var self = this;
+                setTimeout(function() { if (!self.disabled) self.textContent = '➕ 再加入一道错题'; }, 1500);
+            } else {
+                alert('加入失败: ' + (result.error || '未知错误'));
+                this.textContent = '➕ 加入错题本';
+            }
+        } catch(e) { alert('请求失败: ' + e.message); this.textContent = '➕ 加入错题本'; }
+        this.disabled = false;
+    });
+
+    if (btnAnalyze) btnAnalyze.addEventListener('click', async function() {
+        if (!chatHistory) { alert('请先点击「开始答题」获取答案'); return; }
+
+        var analyzeId = lastWrongEntryId;
+        var wrongInput = document.getElementById('wrongInput');
+
+        // 如果还没加入，先快速入册
+        if (!analyzeId) {
+            this.disabled = true; this.textContent = '⏳ 加入中...';
+            try {
+                var rr = await fetch(API + '/api/wrong/quick-add', {
+                    method: 'POST', headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({
+                        session_id: sessionId || '',
+                        question: mode === 'screenshot' ? (chatHistory.slice(0, 500)) : '',
+                        correct_answer: chatHistory,
+                        wrong_answer: (wrongInput ? wrongInput.value.trim() : ''),
+                        source_url: window.location.href
+                    })
+                });
+                var rres = await rr.json();
+                if (rres.success && rres.entry_id) {
+                    analyzeId = rres.entry_id;
+                    lastWrongEntryId = analyzeId;
+                    wrongCount++;
+                    if (wrongCountEl) {
+                        wrongCountEl.textContent = '✓ 本次已加入 ' + wrongCount + ' 道错题';
+                        wrongCountEl.style.color = '#16a34a';
+                    }
+                } else {
+                    alert('加入失败: ' + (rres.error || '未知错误'));
+                    this.disabled = false; this.textContent = '🔬 分析最近一道错题';
+                    return;
+                }
+            } catch(e) { alert('请求失败: ' + e.message); this.disabled = false; this.textContent = '🔬 分析最近一道错题'; return; }
+        }
+
+        // 立即打开分析页面，显示"分析中"状态，API完成后自动跳转
+        var win = window.open(API + '/analysis#analyzing', '_blank');
+        if (!win) { alert('弹窗被浏览器拦截，请允许此站点的弹窗后重试'); return; }
+
+        this.disabled = true; this.textContent = '⏳ 分析中...';
+        try {
+            var resp = await fetch(API + '/api/wrong/batch-analyze', {
+                method: 'POST', headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({ ids: [analyzeId], mode: thinkMode })
+            });
+            var result = await resp.json();
+            if (result.success && result.success_count > 0) {
+                win.location = API + '/analysis#' + analyzeId;
+            } else {
+                win.close();
+                var errMsg = (result.results && result.results[0]) ? result.results[0].error : (result.error || '未知错误');
+                alert('分析失败: ' + errMsg);
+            }
+        } catch(e) { win.close(); alert('请求失败: ' + e.message); }
+        this.disabled = false; this.textContent = '🔬 分析最近一道错题';
+    });
+
+    // 截图三通道：局部 paste / 拖拽 drop / 文件选择
+    var shotArea = document.getElementById('shotArea');
+    var fileInput = document.getElementById('fileInput');
+    var btnPickFile = document.getElementById('btnPickFile');
+    if (btnPickFile && fileInput) {
+        btnPickFile.addEventListener('click', function() { fileInput.click(); });
+        fileInput.addEventListener('change', function(e) {
+            var f = e.target.files && e.target.files[0];
+            if (f) readImageFile(f, 'file-input');
+            e.target.value = '';
+        });
+    }
+    if (shotArea) {
+        // 局部 paste（更可靠，覆盖全局 paste 失效场景）
+        shotArea.addEventListener('paste', handlePaste);
+        // 拖拽上传
+        shotArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'copy';
+            shotArea.style.borderColor = '#5252b3';
+            shotArea.style.background = '#f0f0fa';
+        });
+        shotArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            shotArea.style.borderColor = '#d4d4d8';
+            shotArea.style.background = '#fafafa';
+        });
+        shotArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            shotArea.style.borderColor = '#d4d4d8';
+            shotArea.style.background = '#fafafa';
+            var files = e.dataTransfer && e.dataTransfer.files;
+            if (files && files.length) {
+                for (var i = 0; i < files.length; i++) {
+                    if (files[i].type && files[i].type.indexOf('image/') === 0) {
+                        readImageFile(files[i], 'drop');
+                        break;
+                    }
+                }
+            }
+        });
+    }
+}
+
+function handlePaste(e) {
+    if (mode !== 'screenshot') return;
+    var cd = e.clipboardData || window.clipboardData;
+    if (!cd) { console.warn('[AQH] paste: clipboardData 为空'); return; }
+    var items = cd.items;
+    if (!items) { console.warn('[AQH] paste: items 为空'); return; }
+    var found = false;
+    for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        if (it.type && it.type.indexOf('image/') === 0) {
+            e.preventDefault();
+            var f = it.getAsFile && it.getAsFile();
+            if (f) { readImageFile(f, 'paste'); found = true; }
+            break;
+        }
+    }
+    if (!found) {
+        console.log('[AQH] paste 未检测到图片，items 类型:', Array.prototype.map.call(items, function(x){return x.type}).join(','));
+    }
+}
+
+function readImageFile(file, source) {
+    if (!file) return;
+    console.log('[AQH] 读取图片 source=' + source + ' name=' + (file.name||'') + ' size=' + file.size + ' type=' + file.type);
+    try {
+        var r = new FileReader();
+        r.onload = function() {
+            capturedImage = r.result;
+            console.log('[AQH] 图片读取成功，dataURL长度=' + (capturedImage||'').length);
+            render();
+        };
+        r.onerror = function(err) {
+            console.error('[AQH] FileReader 错误', err);
+            alert('图片读取失败：' + (err && err.message ? err.message : '未知错误'));
+        };
+        r.readAsDataURL(file);
+    } catch (e) {
+        console.error('[AQH] readImageFile 异常', e);
+        alert('图片读取异常：' + e.message);
+    }
 }
 
 function switchMode(m) { mode = m; capturedImage = null; sessionId = null; chatHistory = ''; render(); }
@@ -248,6 +477,8 @@ async function doSubmit() {
     btn.disabled = true;
     sessionId = null;
     chatHistory = '';
+    wrongCount = 0;
+    lastWrongEntryId = null;
 
     try {
         var result;
@@ -379,20 +610,7 @@ async function clearHistory() {
     }
 }
 
-document.addEventListener('paste', function(e) {
-    if (mode !== 'screenshot') return;
-    var items = e.clipboardData?.items;
-    if (!items) return;
-    for (var i = 0; i < items.length; i++) {
-        if (items[i].type.startsWith('image/')) {
-            e.preventDefault();
-            var reader = new FileReader();
-            reader.onload = function() { capturedImage = reader.result; render(); };
-            reader.readAsDataURL(items[i].getAsFile());
-            break;
-        }
-    }
-});
+document.addEventListener('paste', handlePaste);
 
 render();
 </script>

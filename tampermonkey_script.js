@@ -34,121 +34,125 @@
     host.style.cssText = 'all:initial;position:fixed;z-index:2147483647;pointer-events:none;';
     var root = host.attachShadow({ mode: 'closed' });
 
-    // === CSS (蓝白淡色系，已验证可用) ===
+    // === CSS (极简高级风) ===
     var sty = document.createElement('style');
     sty.textContent = `
         .wrap * { margin: 0; padding: 0; border: 0; font: inherit; color: inherit; }
         .wrap { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif; }
         .ball {
-            position: fixed; right: 20px; bottom: 80px; width: 52px; height: 52px; display: flex;
-            border-radius: 50%; background: linear-gradient(135deg, #4a6cf7, #6c5ce7);
-            color: #fff; font-size: 24px; align-items: center;
-            justify-content: center; cursor: pointer; box-shadow: 0 4px 20px rgba(74,108,247,0.4);
+            position: fixed; right: 20px; bottom: 80px; width: 48px; height: 48px; display: flex;
+            border-radius: 50%; background: #5252b3;
+            color: #fff; font-size: 20px; align-items: center;
+            justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(82,82,179,0.25);
             z-index: 2147483647; pointer-events: auto; user-select: none;
-            transition: transform 0.2s; font-weight: 700;
+            transition: all 0.15s ease; font-weight: 700;
         }
-        .ball:hover { transform: scale(1.1); }
+        .ball:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(82,82,179,0.35); }
         .ball:active { transform: scale(0.95); }
         .panel {
-            position: fixed; right: 20px; bottom: 80px; width: 420px; max-height: 580px; display: flex;
-            background: #fff; color: #1a1a2e; border-radius: 16px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.15); z-index: 2147483647;
+            position: fixed; right: 20px; bottom: 80px; width: 400px; max-height: 560px; display: flex;
+            background: #ffffff; color: #18181b; border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08); z-index: 2147483647;
             pointer-events: auto; flex-direction: column; overflow: hidden;
-            border: 1px solid #d6e4ff;
+            border: 1px solid #e4e4e7;
         }
         .hdr {
             display: flex; align-items: center; padding: 14px 18px;
-            background: linear-gradient(135deg, #e8f0fe, #d6e4ff);
-            border-bottom: 1px solid #c8d6e5; flex-shrink: 0; cursor: move;
+            background: #ffffff;
+            border-bottom: 1px solid #e4e4e7; flex-shrink: 0; cursor: move;
             justify-content: space-between;
         }
-        .hdr-t { font-size: 16px; font-weight: 700; color: #2c3e80; }
-        .hdr-b { background: none; border: none; color: #7b8eb0; font-size: 20px; cursor: pointer; padding: 0 4px; line-height: 1; }
-        .hdr-b:hover { color: #2c3e80; }
-        .bdy { flex: 1; overflow-y: auto; padding: 16px; display: block; }
-        .tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+        .hdr-t { font-size: 15px; font-weight: 600; color: #18181b; }
+        .hdr-b { background: none; border: none; color: #a1a1aa; font-size: 18px; cursor: pointer; padding: 0 4px; line-height: 1; transition: all 0.15s ease; }
+        .hdr-b:hover { color: #18181b; }
+        .bdy { flex: 1; overflow-y: auto; padding: 16px; display: block; background: #ffffff; }
+        .tabs { display: flex; gap: 0; margin-bottom: 14px; background: #f4f4f5; border-radius: 8px; padding: 3px; }
         .tab {
-            flex: 1; padding: 10px; border-radius: 10px; border: 2px solid #d6e4ff; display: block;
-            background: #f4f8ff; color: #5a6e8e; cursor: pointer; text-align: center;
-            font-size: 13px; font-weight: 600; transition: all 0.2s;
+            flex: 1; padding: 8px; border-radius: 6px; border: none; display: block;
+            background: transparent; color: #71717a; cursor: pointer; text-align: center;
+            font-size: 13px; font-weight: 500; transition: all 0.15s ease;
         }
-        .tab.on { background: #4a6cf7; border-color: #4a6cf7; color: #fff; box-shadow: 0 2px 8px rgba(74,108,247,0.3); }
+        .tab.on { background: #ffffff; border: none; color: #18181b; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
         .shot {
-            min-height: 110px; border: 2px dashed #c8d6e5; border-radius: 14px; display: flex;
-            align-items: center; justify-content: center; color: #8899b0;
-            font-size: 14px; background: #fafcff; margin-bottom: 14px; overflow: hidden;
+            min-height: 100px; border: 1px dashed #d4d4d8; border-radius: 12px; display: flex;
+            align-items: center; justify-content: center; color: #a1a1aa;
+            font-size: 13px; background: #fafafa; margin-bottom: 14px; overflow: hidden;
         }
         .shot img { max-width: 100%; max-height: 260px; display: block; }
-        .hint { padding: 18px; color: #8899b0; font-size: 13px; text-align: center; line-height: 2; display: block; }
-        .ttl { font-size: 12px; color: #7b8eb0; margin-bottom: 8px; font-weight: 600; display: block; }
-        .thopts { display: flex; gap: 8px; margin-bottom: 14px; }
+        .hint { padding: 18px; color: #a1a1aa; font-size: 13px; text-align: center; line-height: 2; display: block; }
+        .ttl { font-size: 11px; color: #71717a; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
+        .thopts { display: flex; gap: 0; margin-bottom: 14px; background: #f4f4f5; border-radius: 8px; padding: 3px; }
         .tho {
-            flex: 1; padding: 8px 6px; border-radius: 8px; border: 2px solid #d6e4ff; display: block;
-            background: #f4f8ff; color: #5a6e8e; cursor: pointer; text-align: center;
-            font-size: 11px; font-weight: 600; transition: all 0.2s;
+            flex: 1; padding: 7px 6px; border-radius: 6px; border: none; display: block;
+            background: transparent; color: #71717a; cursor: pointer; text-align: center;
+            font-size: 12px; font-weight: 500; transition: all 0.15s ease;
         }
-        .tho.on { background: #4a6cf7; border-color: #4a6cf7; color: #fff; box-shadow: 0 2px 8px rgba(74,108,247,0.3); }
+        .tho.on { background: #ffffff; border: none; color: #18181b; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
         .btn {
-            width: 100%; padding: 12px; border-radius: 12px; border: none; display: block;
-            background: linear-gradient(135deg, #4a6cf7, #6c5ce7); color: #fff;
-            font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 14px;
-            box-shadow: 0 4px 15px rgba(74,108,247,0.35); transition: all 0.2s;
+            width: 100%; padding: 12px; border-radius: 10px; border: none; display: block;
+            background: #5252b3; color: #fff;
+            font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 14px;
+            box-shadow: 0 1px 3px rgba(82,82,179,0.3); transition: all 0.15s ease;
         }
-        .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(74,108,247,0.45); }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn:hover { background: #4444a8; box-shadow: 0 4px 12px rgba(82,82,179,0.25); transform: translateY(-1px); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
         .ans {
-            display: block; background: #f4f8ff; border-radius: 12px; padding: 16px; color: #1a1a2e;
+            display: block; background: #fafafa; border-radius: 10px; padding: 16px; color: #3f3f46;
             max-height: 250px; overflow-y: auto; font-size: 14px; line-height: 1.8;
-            white-space: pre-wrap; word-break: break-word; border: 1px solid #d6e4ff;
+            white-space: pre-wrap; word-break: break-word; border: 1px solid #e4e4e7;
             margin-bottom: 12px;
         }
-        .ans:empty::after { content: '点击上方按钮开始答题...'; color: #b0bec5; display: block; }
+        .ans:empty::after { content: '点击上方按钮开始答题...'; color: #a1a1aa; display: block; }
         .btns { display: flex; gap: 8px; margin-bottom: 12px; }
         .btns button {
-            flex: 1; padding: 10px; border-radius: 10px; border: 2px solid #d6e4ff; display: block;
-            background: #fff; color: #4a6cf7; font-size: 13px; font-weight: 600; cursor: pointer;
+            flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #e4e4e7; display: block;
+            background: #ffffff; color: #5252b3; font-size: 13px; font-weight: 500; cursor: pointer;
+            transition: all 0.15s ease;
         }
-        .btns button:hover { background: #f0f4ff; border-color: #4a6cf7; }
+        .btns button:hover { background: #f4f4f5; border-color: #d4d4d8; }
         .chatr { display: flex; gap: 8px; }
         .chati {
-            flex: 1; padding: 10px 14px; border-radius: 10px; border: 2px solid #d6e4ff; display: inline-block;
-            background: #fff; color: #1a1a2e; font-size: 13px; outline: none;
+            flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid #e4e4e7; display: inline-block;
+            background: #ffffff; color: #18181b; font-size: 13px; outline: none; transition: all 0.15s ease;
         }
-        .chati:focus { border-color: #4a6cf7; }
+        .chati:focus { border-color: #5252b3; }
         .chats {
-            padding: 10px 18px; border-radius: 10px; border: none; background: #4a6cf7; display: inline-block;
-            color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap;
+            padding: 10px 18px; border-radius: 8px; border: none; background: #5252b3; display: inline-block;
+            color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap;
+            transition: all 0.15s ease;
         }
-        .chats:hover { background: #3b5de7; }
-        .chats:disabled { opacity: 0.5; cursor: not-allowed; }
-        .load { display: block; text-align: center; padding: 24px; color: #4a6cf7; font-size: 18px; }
-        .err { display: block; color: #e74c3c; padding: 10px; font-size: 13px; }
+        .chats:hover { background: #4444a8; }
+        .chats:disabled { opacity: 0.4; cursor: not-allowed; }
+        .load { display: block; text-align: center; padding: 24px; color: #71717a; font-size: 15px; }
+        .err { display: block; color: #dc2626; padding: 10px; font-size: 13px; }
         .hlink { margin-top: 10px; text-align: center; display: block; }
-        .hlink span { color: #4a6cf7; font-size: 13px; cursor: pointer; font-weight: 600; }
+        .hlink span { color: #5252b3; font-size: 13px; cursor: pointer; font-weight: 500; transition: all 0.15s ease; }
         .hlink span:hover { text-decoration: underline; }
         .hitem {
-            display: block; padding: 12px 14px; border-bottom: 1px solid #e8eef5; cursor: pointer;
-            font-size: 13px; color: #1a1a2e;
+            display: block; padding: 12px 14px; border-bottom: 1px solid #f4f4f5; cursor: pointer;
+            font-size: 13px; color: #18181b; transition: all 0.15s ease;
         }
-        .hitem:hover { background: #f0f4ff; }
-        .hitem .htime { display: block; font-size: 11px; color: #8899b0; margin-bottom: 4px; }
-        .hitem .hprev { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .hzero { display: block; text-align: center; color: #b0bec5; padding: 40px; font-size: 14px; }
+        .hitem:hover { background: #fafafa; }
+        .hitem .htime { display: block; font-size: 11px; color: #a1a1aa; margin-bottom: 4px; }
+        .hitem .hprev { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #3f3f46; }
+        .hzero { display: block; text-align: center; color: #a1a1aa; padding: 40px; font-size: 14px; }
         .hdet {
-            display: block; background: #f4f8ff; border-radius: 12px; padding: 16px; color: #1a1a2e;
+            display: block; background: #fafafa; border-radius: 10px; padding: 16px; color: #3f3f46;
             max-height: 280px; overflow-y: auto; font-size: 14px; line-height: 1.8;
-            white-space: pre-wrap; border: 1px solid #d6e4ff;
+            white-space: pre-wrap; border: 1px solid #e4e4e7;
         }
         .bkb {
-            display: inline-block; background: #fff; border: 2px solid #d6e4ff; color: #4a6cf7; font-size: 13px;
-            cursor: pointer; padding: 6px 14px; border-radius: 8px; margin-bottom: 10px; font-weight: 600;
+            display: inline-block; background: #ffffff; border: 1px solid #e4e4e7; color: #5252b3; font-size: 13px;
+            cursor: pointer; padding: 6px 14px; border-radius: 8px; margin-bottom: 10px; font-weight: 500;
+            transition: all 0.15s ease;
         }
-        .bkb:hover { background: #f0f4ff; }
+        .bkb:hover { background: #f4f4f5; }
         .clb {
-            display: inline-block; background: #fff; border: 2px solid #f5c6cb; color: #e74c3c; font-size: 12px;
-            cursor: pointer; padding: 6px 12px; border-radius: 8px; float: right; font-weight: 600;
+            display: inline-block; background: #ffffff; border: 1px solid #fecaca; color: #dc2626; font-size: 12px;
+            cursor: pointer; padding: 6px 12px; border-radius: 8px; float: right; font-weight: 500;
+            transition: all 0.15s ease;
         }
-        .clb:hover { background: #fef0f0; }
+        .clb:hover { background: #fef2f2; }
     `;
     root.appendChild(sty);
 
@@ -167,6 +171,8 @@
     var hdata = [];
     var hitem = null;
     var abortCtrl = null;
+    var wrongCount = 0;          // 本次答题已加入错题本的数量
+    var lastWrongEntryId = null; // 最近一次加入的错题 entry_id
 
     // 拖拽
     var dg = false, dsx, dsy, dsr, dsb;
@@ -218,7 +224,7 @@
         wrap.appendChild(b);
     }
 
-    function cls() { abrt(); open = false; img = null; sid = null; histText = ''; view = 'main'; ball(); }
+    function cls() { abrt(); open = false; img = null; sid = null; histText = ''; view = 'main'; wrongCount = 0; lastWrongEntryId = null; ball(); }
 
     function panel() {
         abrt();
@@ -270,9 +276,69 @@
         // shot area
         if (settings.mode === 'screenshot') {
             var sh = el('div', 'shot');
+            sh.setAttribute('data-dropzone', '1');
             if (img) { sh.innerHTML = '<img src="' + img + '">'; }
-            else { sh.innerHTML = '<div class="hint">📌 用 <b>Win+Shift+S</b> 截图题目<br>在此按 <b>Ctrl+V</b> 粘贴</div>'; }
+            else {
+                sh.innerHTML = '<div class="hint" data-dropzone-hint="1">'
+                    + '<div>📌 用 <b>Win+Shift+S</b> 截图题目</div>'
+                    + '<div style="margin-top:6px">在此按 <b>Ctrl+V</b> 粘贴 · 或拖拽图片到此 · 或</div>'
+                    + '<div style="margin-top:8px"><button class="bkb" data-pick-file="1" style="margin:0;padding:5px 12px;font-size:12px;">📂 选择图片文件</button></div>'
+                    + '</div>';
+            }
             bdy.appendChild(sh);
+
+            // 文件选择按钮（隐藏 input，按钮触发）
+            var fileInput = el('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            fileInput.style.display = 'none';
+            fileInput.addEventListener('change', function(ev) {
+                var f = ev.target.files && ev.target.files[0];
+                if (f) { readImageFile(f, 'file-input'); }
+                ev.target.value = '';
+            });
+            bdy.appendChild(fileInput);
+
+            // 局部按钮
+            var pickBtn = sh.querySelector('[data-pick-file]');
+            if (pickBtn) {
+                pickBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    fileInput.click();
+                });
+            }
+
+            // 局部 paste 监听（shot 区域本身，覆盖document监听不可靠的场景）
+            sh.addEventListener('paste', function(ev) {
+                handlePaste(ev);
+            });
+
+            // 拖拽上传
+            sh.addEventListener('dragover', function(ev) {
+                ev.preventDefault();
+                ev.dataTransfer.dropEffect = 'copy';
+                sh.style.borderColor = '#5252b3';
+                sh.style.background = '#f0f0fa';
+            });
+            sh.addEventListener('dragleave', function(ev) {
+                ev.preventDefault();
+                sh.style.borderColor = '#d4d4d8';
+                sh.style.background = '#fafafa';
+            });
+            sh.addEventListener('drop', function(ev) {
+                ev.preventDefault();
+                sh.style.borderColor = '#d4d4d8';
+                sh.style.background = '#fafafa';
+                var files = ev.dataTransfer && ev.dataTransfer.files;
+                if (files && files.length) {
+                    for (var i = 0; i < files.length; i++) {
+                        if (files[i].type && files[i].type.indexOf('image/') === 0) {
+                            readImageFile(files[i], 'drop');
+                            break;
+                        }
+                    }
+                }
+            });
         } else {
             var sh2 = el('div', 'shot');
             sh2.style.minHeight = '60px';
@@ -301,6 +367,155 @@
         ans.id = 'ansBox';
         if (histText) ans.textContent = histText;
         bdy.appendChild(ans);
+
+        // 错题标记区
+        var wrong = el('div', '');
+        wrong.style.cssText = 'background:#fafafa;border:1px solid #e4e4e7;border-radius:10px;padding:14px;margin-bottom:12px;display:block;';
+        var wtitle = el('div', '', '💡 这道题你做对了吗？');
+        wtitle.style.cssText = 'font-size:12px;color:#71717a;margin-bottom:8px;font-weight:600;display:block;';
+        wrong.appendChild(wtitle);
+
+        var wbtns = el('div', '');
+        wbtns.style.cssText = 'display:flex;gap:8px;margin-bottom:8px;';
+
+        var wok = el('button', '', '✅ 做对了');
+        wok.style.cssText = 'flex:1;padding:8px;border-radius:8px;border:1px solid #bbf7d0;background:#ffffff;color:#16a34a;font-size:12px;font-weight:600;cursor:pointer;display:inline-block;transition:all 0.15s ease;';
+        wok.addEventListener('click', function() {
+            wrong.querySelector('.wrong-detail').style.display = 'none';
+            wok.style.background = '#f0fdf4'; wok.textContent = '✅ 已标记';
+            werr.style.background = '#fff'; werr.textContent = '❌ 做错了';
+            var oldTip = wrong.querySelector('.wrong-tip');
+            if (oldTip) oldTip.remove();
+            var tip = el('div', 'wrong-tip');
+            tip.style.cssText = 'color:#16a34a;font-size:12px;text-align:center;padding:6px 0 0;display:block;';
+            tip.textContent = '🎉 很棒！做对的题不会加入错题本';
+            wrong.appendChild(tip);
+        });
+
+        var werr = el('button', '', '❌ 做错了');
+        werr.style.cssText = 'flex:1;padding:8px;border-radius:8px;border:1px solid #fecaca;background:#ffffff;color:#dc2626;font-size:12px;font-weight:600;cursor:pointer;display:inline-block;transition:all 0.15s ease;';
+        werr.addEventListener('click', function() {
+            var detail = wrong.querySelector('.wrong-detail');
+            detail.style.display = 'block';
+            werr.style.background = '#fef2f2'; werr.textContent = '❌ 已标记';
+            wok.style.background = '#fff'; wok.textContent = '✅ 做对了';
+            var oldTip = wrong.querySelector('.wrong-tip');
+            if (oldTip) oldTip.remove();
+        });
+
+        wbtns.appendChild(wok); wbtns.appendChild(werr);
+        wrong.appendChild(wbtns);
+
+        var wdetail = el('div', 'wrong-detail');
+        wdetail.style.cssText = 'display:none;';
+
+        // 计数提示
+        var wcount = el('div', 'wrong-count');
+        wcount.style.cssText = 'font-size:11px;color:#71717a;text-align:center;margin-bottom:8px;display:block;';
+        wcount.textContent = '本次已加入 ' + wrongCount + ' 道错题';
+        wdetail.appendChild(wcount);
+
+        // 错答输入框
+        var wi = el('input', 'chati');
+        wi.type = 'text'; wi.placeholder = '我填的答案是...（可选，帮助AI精准诊断）';
+        wi.style.cssText = 'width:100%;box-sizing:border-box;margin-bottom:8px;display:inline-block;';
+        wdetail.appendChild(wi);
+
+        // 加入错题本按钮（quick-add，允许连续标记多道）
+        var wadd = el('button', 'btn', '➕ 加入错题本');
+        wadd.style.cssText = 'width:100%;margin-bottom:8px;display:block;font-size:13px;background:#16a34a;box-shadow:0 1px 3px rgba(22,163,74,0.3);';
+        wadd.addEventListener('click', async function() {
+            if (!histText) { alert('请先点击「开始答题」获取答案'); return; }
+            wadd.disabled = true; wadd.textContent = '⏳ 加入中...';
+            try {
+                var r = await ffetch(API + '/api/wrong/quick-add', {
+                    method: 'POST', headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({
+                        session_id: sid || '',
+                        question: settings.mode === 'screenshot' ? (histText.slice(0, 500)) : (document.body ? document.body.innerText.slice(0, 2000) : ''),
+                        correct_answer: histText,
+                        wrong_answer: wi.value.trim(),
+                        source_url: window.location.href
+                    })
+                });
+                var result = await r.json();
+                if (result.success && result.entry_id) {
+                    wrongCount++;
+                    lastWrongEntryId = result.entry_id;
+                    wcount.textContent = '✓ 本次已加入 ' + wrongCount + ' 道错题';
+                    wcount.style.color = '#16a34a';
+                    wi.value = '';
+                    wadd.textContent = '✓ 已加入（第' + wrongCount + '道），可继续标记';
+                    setTimeout(function() { if (!wadd.disabled) wadd.textContent = '➕ 再加入一道错题'; }, 1500);
+                } else {
+                    alert('加入失败: ' + (result.error || '未知错误'));
+                    wadd.textContent = '➕ 加入错题本';
+                }
+            } catch(e) { alert('请求失败: ' + e.message); wadd.textContent = '➕ 加入错题本'; }
+            wadd.disabled = false;
+        });
+        wdetail.appendChild(wadd);
+
+        // 分析最近一道按钮（对 lastWrongEntryId 触发AI分析）
+        var wa = el('button', 'btn', '🔬 分析最近一道错题');
+        wa.style.cssText = 'width:100%;margin-bottom:0;display:block;font-size:13px;';
+        wa.addEventListener('click', async function() {
+            if (!histText) { alert('请先点击「开始答题」获取答案'); return; }
+
+            var analyzeId = lastWrongEntryId;
+            // 如果还没加入，先快速入册
+            if (!analyzeId) {
+                wa.disabled = true; wa.textContent = '⏳ 加入中...';
+                try {
+                    var rr = await ffetch(API + '/api/wrong/quick-add', {
+                        method: 'POST', headers: {'Content-Type':'application/json'},
+                        body: JSON.stringify({
+                            session_id: sid || '',
+                            question: settings.mode === 'screenshot' ? (histText.slice(0, 500)) : (document.body ? document.body.innerText.slice(0, 2000) : ''),
+                            correct_answer: histText,
+                            wrong_answer: wi.value.trim(),
+                            source_url: window.location.href
+                        })
+                    });
+                    var rres = await rr.json();
+                    if (rres.success && rres.entry_id) {
+                        analyzeId = rres.entry_id;
+                        lastWrongEntryId = analyzeId;
+                        wrongCount++;
+                        wcount.textContent = '✓ 本次已加入 ' + wrongCount + ' 道错题';
+                        wcount.style.color = '#16a34a';
+                    } else {
+                        alert('加入失败: ' + (rres.error || '未知错误'));
+                        wa.disabled = false; wa.textContent = '🔬 分析最近一道错题';
+                        return;
+                    }
+                } catch(e) { alert('请求失败: ' + e.message); wa.disabled = false; wa.textContent = '🔬 分析最近一道错题'; return; }
+            }
+
+            // 立即打开分析页面，显示"分析中"状态，API完成后自动跳转
+            var win = window.open(API + '/analysis#analyzing', '_blank');
+            if (!win) { alert('弹窗被浏览器拦截，请允许此站点的弹窗后重试'); return; }
+
+            wa.disabled = true; wa.textContent = '⏳ 分析中...';
+            try {
+                var r = await ffetch(API + '/api/wrong/batch-analyze', {
+                    method: 'POST', headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({ ids: [analyzeId], mode: settings.think })
+                });
+                var result = await r.json();
+                if (result.success && result.success_count > 0) {
+                    win.location = API + '/analysis#' + analyzeId;
+                } else {
+                    win.close();
+                    var errMsg = (result.results && result.results[0]) ? result.results[0].error : (result.error || '未知错误');
+                    alert('分析失败: ' + errMsg);
+                }
+            } catch(e) { win.close(); alert('请求失败: ' + e.message); }
+            wa.disabled = false; wa.textContent = '🔬 分析最近一道错题';
+        });
+        wdetail.appendChild(wa);
+        wrong.appendChild(wdetail);
+        bdy.appendChild(wrong);
 
         // copy/fill
         var bts = el('div', 'btns');
@@ -372,6 +587,8 @@
         go.disabled = true;
         sid = null;
         histText = '';
+        wrongCount = 0;
+        lastWrongEntryId = null;
 
         try {
             var result;
@@ -507,21 +724,60 @@
         wrap.appendChild(p);
     }
 
-    // === 粘贴截图 ===
-    document.addEventListener('paste', function(e) {
+    // === 粘贴截图 / 拖拽 / 文件选择 三通道 ===
+    function handlePaste(e) {
         if (!open || settings.mode !== 'screenshot') return;
-        var items = e.clipboardData?.items;
-        if (!items) return;
+        // 兼容性写法：clipboardData 可能在某些宿主页面被改写
+        var cd = e.clipboardData || window.clipboardData;
+        if (!cd) {
+            console.warn('[AQH] paste: clipboardData 为空');
+            return;
+        }
+        var items = cd.items;
+        if (!items) {
+            console.warn('[AQH] paste: items 为空');
+            return;
+        }
+        var found = false;
         for (var i = 0; i < items.length; i++) {
-            if (items[i].type.startsWith('image/')) {
+            var it = items[i];
+            if (it.type && it.type.indexOf('image/') === 0) {
                 e.preventDefault();
-                var r = new FileReader();
-                r.onload = function() { img = r.result; panel(); };
-                r.readAsDataURL(items[i].getAsFile());
+                var f = it.getAsFile && it.getAsFile();
+                if (f) {
+                    readImageFile(f, 'paste');
+                    found = true;
+                }
                 break;
             }
         }
-    });
+        if (!found) {
+            console.log('[AQH] paste 未检测到图片，items 类型:', Array.prototype.map.call(items, function(x){return x.type}).join(','));
+        }
+    }
+
+    function readImageFile(file, source) {
+        if (!file) return;
+        console.log('[AQH] 读取图片 source=' + source + ' name=' + (file.name||'') + ' size=' + file.size + ' type=' + file.type);
+        try {
+            var r = new FileReader();
+            r.onload = function() {
+                img = r.result;
+                console.log('[AQH] 图片读取成功，dataURL长度=' + (img||'').length);
+                panel();
+            };
+            r.onerror = function(err) {
+                console.error('[AQH] FileReader 错误', err);
+                alert('图片读取失败：' + (err && err.message ? err.message : '未知错误'));
+            };
+            r.readAsDataURL(file);
+        } catch (e) {
+            console.error('[AQH] readImageFile 异常', e);
+            alert('图片读取异常：' + e.message);
+        }
+    }
+
+    document.addEventListener('paste', handlePaste);
 
     // === 全屏支持 ===
     function attach() {

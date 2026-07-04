@@ -140,3 +140,19 @@ class DeepSeekClient:
             session["messages"].append({"role": "assistant", "content": result["answer"]})
 
         return result
+
+    def _custom_chat(self, system_prompt: str, user_prompt: str, mode: str = "normal") -> dict:
+        """通用自定义对话"""
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+        return self._call_api(messages, mode)
+
+    def analyze_wrong(self, system_prompt: str, user_prompt: str, mode: str = "normal") -> dict:
+        """错题分析：发送自定义 system prompt 和 user prompt"""
+        return self._custom_chat(system_prompt, user_prompt, mode)
+
+    def check_practice(self, system_prompt: str, user_prompt: str, mode: str = "normal") -> dict:
+        """练习评判"""
+        return self._custom_chat(system_prompt, user_prompt, mode)
